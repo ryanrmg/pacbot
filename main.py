@@ -17,9 +17,11 @@ def test():
             b.setScreen()
             b.clearBoard()
             b.getBoard
-
+            hasmoved = False
             #b.setScreen()
-            while pos == b.getPacPosition():
+            
+            while hasmoved == False:
+
                 #random.choice([b.pacLeft(), b.pacRight(), b.pacDown(), b.pacUp()])
                 b.setScreen()
                 for ghost in ghosts:
@@ -39,11 +41,17 @@ def test():
                         if p < b.getPacPosition():
                             random.choice([b.pacRight, b.pacDown()])
                             print('yeah')
+                            hasmoved = True
                         if p > b.getPacPosition():
                             random.choice([b.pacUp(), b.pacLeft()])
                             print('see ya')
+                            hasmoved = True
                     else:
-                        random.choice([b.pacLeft(), b.pacRight(), b.pacDown(), b.pacUp()])
+                        pos = b.getPacPosition()
+                        while pos == b.getPacPosition():
+                            random.choice([b.pacLeft(), b.pacRight(), b.pacDown(), b.pacUp()])
+                            hasmoved = True
+
             #print("pink ghost distance : " + str(b.getGhostDistance('pink')))
 
             #if b.board[122] == 1:
